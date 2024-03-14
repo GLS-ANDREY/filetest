@@ -1,36 +1,29 @@
-# import time,os,random
-# print("Здравствуйте! У вас 10 монет.")
-# time.sleep(1)
-# vibor_int = 3
-# while True:
-#     if vibor_int < 6 and vibor_int > 1:
-#         vibor = input("Выберите одно число от 1 до 6 (включительно) - ")
-#         vibor_proverka = vibor.isnumeric()
-#         if vibor_proverka == True:
-#             vibor_int = int(vibor)
-#     if vibor_int > 6 or vibor_int < 1 or vibor_proverka == False:
-#         vibor_false = input("Вы сделали не правильную ставку. Ещё раз выберите одно число от 1 до 6 (включительно) - ")
-#         vibor_proverka_false = vibor_false.isnumeric()
-#         if vibor_proverka_false == True:
-#             vibor_false = int(vibor_false)
-#     if vibor_int <= 6 and vibor_int >= 1 or vibor_false <= 6 and vibor_false:
-#         break
-# kubik = random.randint(1,6)
-# kubiks = str(kubik)
-# print("Выпало " + kubiks)
-
-import time,os,random
+import time, os, random
 print("Здравствуйте! У вас 10 монет.")
+my_bank = 10
+
 vibor_chisla = input("Выберите одно число от 1 до 6 (включительно) - ")
-while vibor_chisla.isnumeric == False or int(vibor_chisla) >= 6 or int(vibor_chisla) <= 1:
-    vibor_chisla = input("Вы сделали не правильную ставку. Ещё раз выберите одно число от 1 до 6 (включительно) - ")
-kubik = random.randint(1,6)
+while vibor_chisla.isnumeric() == False or int(vibor_chisla) >= 7 or int(vibor_chisla) <= 0:
+    vibor_chisla = input("Вы выбрали неправильное число. Ещё раз выберите одно число от 1 до 6 (включительно) - ")
+
+vibor_stavki = input("Сделайте вашу ставку - ")
+while vibor_stavki.isnumeric() == False or int(vibor_stavki) >= 11 or int(vibor_stavki) <= 0:
+    if vibor_stavki.isnumeric() == False:
+        vibor_stavki = input("Нужно писать число. Сделайте ставку ещё раз - ")
+        continue
+    if int(vibor_stavki) >= 11:
+        vibor_stavki = input("Вы поставили число больше вашего баланса. Сделайте ставку ещё раз - ")
+    if int(vibor_stavki) <= 0:
+        vibor_stavki = input("Вы поставили число меньше 1. Сделайте ставку ещё раз - ")
+
+kubik = random.randint(6, 6)
 kubiks = str(kubik)
 print("Выпало " + kubiks)
-
-# импорты
-# первый вопрос
-# вайл нельзя сделать ответ числом или число больше 6 или меньше 1
-#     просить ввести число еще раз
-# что то выпало
-
+if kubiks == vibor_chisla:
+    print("Поздравляю! Вы выйграли!")
+    my_bank *= int(vibor_stavki)
+    print("У вас осталось " + str(my_bank) + " монет")
+else:
+    print("К сожалению... Вы проиграли")
+    my_bank -= int(vibor_stavki)
+    print("У вас осталось " + str(my_bank) + " монет")
